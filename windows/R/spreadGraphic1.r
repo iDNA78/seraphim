@@ -121,7 +121,7 @@ spreadGraphic1 = function(localTreesDirectory, nberOfExtractionFiles, rast, prob
 				}	else	{
 					buffer = list(); emptyList = list()
 					# buffer = foreach(i = seq(startDatum,(endYear+precision),by=precision)) %dopar% {			
-					for (i in 1:seq(startDatum,(endYear+precision),by=precision)) {
+					for (i in seq(startDatum,(endYear+precision),by=precision)) {
 							pts = points[(points[,1]>=i)&(points[,1]<(i+precision)),2:3]
 							pts = unique(pts)
 							if (length(pts) > 0)
