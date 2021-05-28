@@ -163,23 +163,22 @@ spreadGraphic1 = function(localTreesDirectory, nberOfExtractionFiles, rast, prob
 							buffer[[i]] = temp
 							# temp
 						}
+					buffer <- buffer[sapply(buffer, function(x) !is.null(x))]
+					buffer <- buffer[sapply(buffer, function(x) !is.character(x))]
 					c = 0
 					for (i in 1:length(buffer))
 						{	
-							if (!is.character(buffer[[i]]))
-								{
-									rast2 = raster::merge(rast2, buffer[[i]])
-									if (timeLayers == TRUE)
-										{
-											c = c+1
-											rasts[[c]] = rast2
-										}
-									if (yearLayers == TRUE)
-										{
-											c = c+1
-											rasts[[c]] = buffer[[i]]
-										}
-								}
+								rast2 = raster::merge(rast2, buffer[[i]])
+								if (timeLayers == TRUE)
+									{
+										c = c+1
+										rasts[[c]] = rast2
+									}
+								if (yearLayers == TRUE)
+									{
+										c = c+1
+										rasts[[c]] = buffer[[i]]
+									}
 						}
 				}			
 			if (showingPlots == TRUE)
